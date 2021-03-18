@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    echo 'Hello World';
+    return redirect()->route('login');
 });
+
+Route::namespace('Auth')->group(function() {
+
+    Route::middleware(['guest'])->group(function() {
+        Route::get('/login', 'AuthController@index')->name('login');
+        Route::post('/login', 'AuthController@login');
+    });
+
+    Route::get('/logout', 'AuthController@logout')->name('logout');
+
+});
+
