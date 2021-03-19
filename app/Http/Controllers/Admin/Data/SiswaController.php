@@ -5,48 +5,71 @@ namespace App\Http\Controllers\admin\data;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
-class KategoriController extends BaseController
+class SiswaController extends BaseController
 {
     public function index()
     {
-        $data['kategori'] = \App\Kategori::get();  
-        return view('admin/data/kategori/index', $data);
+        $data['siswa'] = \App\Siswa::get();  
+        return view('admin/data/siswa/index', $data);
     }
 
-    public function find(\App\Kategori $kategori)
+    public function create()
     {
-        return $kategori;
+        return view('admin/data/siswa/create');
+    }
+
+    public function find(\App\Siswa $siswa)
+    {
+        return $siswa;
     }
     
     public function store(Request $request)
     {
         $request->validate([
+            'nisn' => 'required',
+            'nis' => 'required',
             'nama' => 'required',
+            'kelas_id' => 'required',
+            'kelamin' => 'required',
         ]);
 
-        $model = new \App\Kategori();
+        $model = new \App\Siswa();
         $model->nama = $request->nama;
-        $model->user_id = auth()->user()->id;
+        $model->nisn = $request->nisn;
+        $model->nis = $request->nis;
+        $model->kelas_id = $request->kelas_id;
+        $model->kelamin = $request->kelamin;
+        $model->telp = $request->telp;
+        $model->alamat = $request->alamat;
         $model->save();
-        return back()->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('admin.data.siswa.index')->with('success', 'Data Berhasil Ditambahkan');
     }
     
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nisn' => 'required',
+            'nis' => 'required',
             'nama' => 'required',
+            'kelas_id' => 'required',
+            'kelamin' => 'required',
         ]);
         
-        $model = \App\Kategori::find($id);
+        $model = \App\Siswa::find($id);
         $model->nama = $request->nama;
-        $model->user_id = auth()->user()->id;
+        $model->nisn = $request->nisn;
+        $model->nis = $request->nis;
+        $model->kelas_id = $request->kelas_id;
+        $model->kelamin = $request->kelamin;
+        $model->telp = $request->telp;
+        $model->alamat = $request->alamat;
         $model->save();
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }
     
     public function destroy($id)
     {
-        \App\Kategori::destroy($id);
+        \App\Siswa::destroy($id);
         return back()->with('success', 'Data Berhasil Dihapus');
     }
 }
