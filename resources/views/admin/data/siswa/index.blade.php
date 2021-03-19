@@ -1,6 +1,7 @@
 @extends('layout/admin')
+
 @section('header')
-  <h1>Data Siswa</h1>  
+  <h1>Data Siswa</h1>
 @endsection
 
 @section('content')
@@ -18,8 +19,8 @@
             <tr>
               <th class="text-center">No</th>
               <th>Nama</th>
-              <th>NISN</th>
               <th>NIS</th>
+              <th>Jenis Kelamin</th>
               <th>Kelas</th>
               <th class="text-center">Action</th>
             </tr>
@@ -29,15 +30,15 @@
               <tr>
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td class="text-left">{{ $row->nama }}</td>
-                <td class="text-left">{{ $row->nisn }}</td>
                 <td class="text-left">{{ $row->nis }}</td>
+                <td class="text-left">{{ ($row->kelamin == 'L') ? 'Laki - Laki' : 'Perempuan' }}</td>
                 <td class="text-left">{{ $row->kelas_id }}</td>
                 <td class="text-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary" data-toggle="dropdown">Detail</button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="https://demospp.isengoding.my.id/siswa/86/edit"><i class="fas fa-edit"></i> Edit</a></li>
-                      <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-trash"></i> Delete</a></li>
+                      <li><a class="dropdown-item" href="{{ route('admin.data.siswa.edit', $row->id) }}"><i class="fas fa-edit"></i> Edit</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0)" onclick="deleteData({{ $row->id }})" data-toggle="modal" data-target="#delete-modal"><i class="fas fa-trash"></i> Delete</a></li>
                     </ul>
                   </div>
                 </td>
@@ -48,4 +49,38 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('modal')
+  <form action="" method="POST" id="delete-form">
+    @csrf
+    @method('DELETE')
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Yakin Ingin Dihapus?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body text-danger">Data Yang Sudah Dihapus Tidak Bisa Dikembalikan Lagi!</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+            <button class="btn btn-danger" type="submit">Hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+@endsection
+
+@section('script')
+  @include('vendor.izitoast.toast')
+
+  <script>
+    function deleteData(id) {
+      $('#delete-form').attr('action', `{{ url('admin/data/siswa/${id}') }}`);
+    }
+  </script>
 @endsection

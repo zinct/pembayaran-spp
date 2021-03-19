@@ -9,7 +9,7 @@ class SiswaController extends BaseController
 {
     public function index()
     {
-        $data['siswa'] = \App\Siswa::get();  
+        $data['siswa'] = \App\Siswa::get();
         return view('admin/data/siswa/index', $data);
     }
 
@@ -45,6 +45,12 @@ class SiswaController extends BaseController
         return redirect()->route('admin.data.siswa.index')->with('success', 'Data Berhasil Ditambahkan');
     }
     
+    public function edit(\App\Siswa $siswa)
+    {
+        $data['kelamin'] = ['L', 'P'];
+        return view('admin.data.siswa.edit', $data, compact('siswa'));
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -64,7 +70,7 @@ class SiswaController extends BaseController
         $model->telp = $request->telp;
         $model->alamat = $request->alamat;
         $model->save();
-        return back()->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('admin.data.siswa.index')->with('success', 'Data Berhasil Ditambahkan');
     }
     
     public function destroy($id)
