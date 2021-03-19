@@ -73,6 +73,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::post('/profile/{user}', 'ProfileController@update')->name('profile.update');
         Route::get('/profile/delete-avatar', 'ProfileController@deleteAvatar')->name('profile.delete-avatar');
 
+        Route::get('/kompetensi', 'KompetensiController@index')->name('kompetensi.index');
+        Route::post('/kompetensi', 'KompetensiController@store')->name('kompetensi.store');
+        Route::get('/kompetensi/create', 'KompetensiController@create')->name('kompetensi.create');
+        Route::get('/kompetensi/edit/{kompetensi}', 'KompetensiController@edit')->name('kompetensi.edit');
+        Route::get('/kompetensi/data/{kompetensi}', 'KompetensiController@find')->name('kompetensi.find');
+        Route::patch('/kompetensi/{kompetensi}', 'KompetensiController@update')->name('kompetensi.update');
+        Route::delete('/kompetensi/{kompetensi}', 'KompetensiController@destroy')->name('kompetensi.destroy');
+
     });
 
 });
