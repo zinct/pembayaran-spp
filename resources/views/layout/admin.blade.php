@@ -205,7 +205,14 @@
                 <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'profile') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
               </ul>
             </li>
-          </ul>
+            <li class="menu-header">Data Management</li>
+            <li class="nav-item dropdown active">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-folder"></i> <span>Master Data</span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a class="nav-link" href="layout-default.html">Data Siswa</a></li>
+              </ul>
+            </li>
+          </ul>      
         </aside>
       </div>
 
