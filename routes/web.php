@@ -85,6 +85,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::patch('/kompetensi/{kompetensi}', 'KompetensiController@update')->name('kompetensi.update');
         Route::delete('/kompetensi/{kompetensi}', 'KompetensiController@destroy')->name('kompetensi.destroy');
 
+        Route::get('/tahun', 'TahunController@index')->name('tahun.index');
+        Route::post('/tahun', 'TahunController@store')->name('tahun.store');
+        Route::get('/tahun/data/{tahun}', 'TahunController@find')->name('tahun.find');
+        Route::patch('/tahun/{tahun}', 'TahunController@update')->name('tahun.update');
+        Route::delete('/tahun/{tahun}', 'TahunController@destroy')->name('tahun.destroy');
+
     });
 
 });

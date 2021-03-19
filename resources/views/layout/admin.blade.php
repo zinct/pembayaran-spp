@@ -212,6 +212,7 @@
                 <li class="{{ request()->segment(3) == 'siswa' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.siswa.index') }}">Data Siswa</a></li>
                 <li class="{{ request()->segment(3) == 'kelas' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.kelas.index') }}">Data Kelas</a></li>
                 <li class="{{ request()->segment(3) == 'kompetensi' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.kompetensi.index') }}">Data Kompetensi</a></li>
+                <li class="{{ request()->segment(3) == 'tahun' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.tahun.index') }}">Tahun Ajaran</a></li>
               </ul>
             </li>
           </ul>      
