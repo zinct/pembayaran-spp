@@ -32,7 +32,7 @@
                 <td class="text-left">{{ $row->nama }}</td>
                 <td class="text-left">{{ $row->nis }}</td>
                 <td class="text-left">{{ ($row->kelamin == 'L') ? 'Laki - Laki' : 'Perempuan' }}</td>
-                <td class="text-left">{{ $row->kelas_id }}</td>
+                <td class="text-left">{{ $row->kelas->nama }}</td>
                 <td class="text-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary" data-toggle="dropdown">Detail</button>

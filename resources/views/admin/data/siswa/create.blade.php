@@ -51,7 +51,9 @@
               <div class="col-sm-12 col-md-7">
                 <select type="text" class="form-control @error('kelas_id') is-invalid @enderror" name="kelas_id">
                   <option value="">Pilih Kelas</option>
-                  <option value="1">XI RPL 4</option>
+                  @foreach ($kelas as $row)
+                    <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                  @endforeach
                 </select>
                 @error('kelas_id')
                   <div class="invalid-feedback">{{ $message }}</div>

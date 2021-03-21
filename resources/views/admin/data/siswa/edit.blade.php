@@ -52,7 +52,13 @@
               <div class="col-sm-12 col-md-7">
                 <select type="text" class="form-control @error('kelas_id') is-invalid @enderror" name="kelas_id">
                   <option value="">Pilih Kelas</option>
-                  <option value="1">XI RPL 4</option>
+                  @foreach ($kelas as $row)
+                    @if ($row->id == old('kelas_id', $siswa->kelas_id))
+                      <option value="{{ $row->id }}" selected>{{ $row->nama }}</option>
+                    @else  
+                      <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                    @endif
+                  @endforeach
                 </select>
                 @error('kelas_id')
                   <div class="invalid-feedback">{{ $message }}</div>
