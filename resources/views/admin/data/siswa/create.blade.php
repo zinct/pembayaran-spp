@@ -83,6 +83,19 @@
               </div>
             </div>
             <div class="form-group row mb-4">
+              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+              <div class="col-sm-12 col-md-7">
+                <select type="text" class="form-control @error('status') is-invalid @enderror" name="status">
+                  <option value="">Pilih Status</option>
+                  <option value="Aktif">Aktif</option>
+                  <option value="Tidak Aktif">Tidak Aktif</option>
+                </select>
+                @error('status')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+            </div>
+            <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
               <div class="col-sm-12 col-md-7">
                 <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" data-height="100" placeholder="Ketik Alamat"></textarea>
