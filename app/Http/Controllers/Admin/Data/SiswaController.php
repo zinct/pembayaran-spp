@@ -15,7 +15,8 @@ class SiswaController extends BaseController
 
     public function create()
     {
-        return view('admin/data/siswa/create');
+        $data['kelas'] = \App\Kelas::get();
+        return view('admin/data/siswa/create', $data);
     }
 
     public function find(\App\Siswa $siswa)
@@ -47,6 +48,7 @@ class SiswaController extends BaseController
     
     public function edit(\App\Siswa $siswa)
     {
+        $data['kelas'] = \App\Kelas::get();
         $data['kelamin'] = ['L', 'P'];
         return view('admin.data.siswa.edit', $data, compact('siswa'));
     }
