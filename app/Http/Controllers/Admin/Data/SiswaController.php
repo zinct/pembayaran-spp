@@ -32,6 +32,7 @@ class SiswaController extends BaseController
             'nama' => 'required',
             'kelas_id' => 'required',
             'kelamin' => 'required',
+            'status' => 'required',
         ]);
 
         $model = new \App\Siswa();
@@ -41,6 +42,7 @@ class SiswaController extends BaseController
         $model->kelas_id = $request->kelas_id;
         $model->kelamin = $request->kelamin;
         $model->telp = $request->telp;
+        $model->status = $request->status;
         $model->alamat = $request->alamat;
         $model->save();
         return redirect()->route('admin.data.siswa.index')->with('success', 'Data Berhasil Ditambahkan');
@@ -50,6 +52,7 @@ class SiswaController extends BaseController
     {
         $data['kelas'] = \App\Kelas::get();
         $data['kelamin'] = ['L', 'P'];
+        $data['status'] = ['Aktif', 'Tidak Aktif'];
         return view('admin.data.siswa.edit', $data, compact('siswa'));
     }
 
@@ -61,6 +64,7 @@ class SiswaController extends BaseController
             'nama' => 'required',
             'kelas_id' => 'required',
             'kelamin' => 'required',
+            'status' => 'required',
         ]);
         
         $model = \App\Siswa::find($id);
@@ -70,6 +74,7 @@ class SiswaController extends BaseController
         $model->kelas_id = $request->kelas_id;
         $model->kelamin = $request->kelamin;
         $model->telp = $request->telp;
+        $model->status = $request->status;
         $model->alamat = $request->alamat;
         $model->save();
         return redirect()->route('admin.data.siswa.index')->with('success', 'Data Berhasil Ditambahkan');

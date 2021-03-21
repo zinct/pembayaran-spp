@@ -22,6 +22,7 @@
               <th>NIS</th>
               <th>Jenis Kelamin</th>
               <th>Kelas</th>
+              <th>Status</th>
               <th class="text-center">Action</th>
             </tr>
           </thead>
@@ -33,6 +34,7 @@
                 <td class="text-left">{{ $row->nis }}</td>
                 <td class="text-left">{{ ($row->kelamin == 'L') ? 'Laki - Laki' : 'Perempuan' }}</td>
                 <td class="text-left">{{ $row->kelas->nama }}</td>
+                <td class="text-left"><div class="badge badge-sm {{ $row->status == 'Aktif' ? 'badge-success' : 'badge-secondary' }}">{{ $row->status }}</div></td>
                 <td class="text-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary" data-toggle="dropdown">Detail</button>

@@ -28,6 +28,6 @@ class CreateSppKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spp_tahun');
+        Schema::dropIfExists('spp_kelas');
     }
 }
