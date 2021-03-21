@@ -29,6 +29,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::patch('/siswa/{siswa}', 'SiswaController@update')->name('siswa.update');
         Route::delete('/siswa/{siswa}', 'SiswaController@destroy')->name('siswa.destroy');
 
+        Route::get('/spp', 'SppController@index')->name('spp.index');
+        Route::post('/spp', 'SppController@store')->name('spp.store');
+        Route::get('/spp/create', 'SppController@create')->name('spp.create');
+        Route::get('/spp/edit/{spp}', 'SppController@edit')->name('spp.edit');
+        Route::get('/spp/data/{spp}', 'SppController@find')->name('spp.find');
+        Route::patch('/spp/{spp}', 'SppController@update')->name('spp.update');
+        Route::delete('/spp/{spp}', 'SppController@destroy')->name('spp.destroy');
+
         Route::get('/kelas', 'KelasController@index')->name('kelas.index');
         Route::post('/kelas', 'KelasController@store')->name('kelas.store');
         Route::get('/kelas/data/{kelas}', 'KelasController@find')->name('kelas.find');

@@ -186,11 +186,12 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Data Management</li>
             <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-folder"></i> <span>Master Data</span></a>
+              <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-folder"></i> <span>Master Data</span></a>
               <ul class="dropdown-menu">
                 <li class="{{ request()->segment(3) == 'siswa' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.siswa.index') }}">Data Siswa</a></li>
                 <li class="{{ request()->segment(3) == 'kelas' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.kelas.index') }}">Data Kelas</a></li>
                 <li class="{{ request()->segment(3) == 'kompetensi' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.kompetensi.index') }}">Data Kompetensi</a></li>
+                <li class="{{ request()->segment(3) == 'spp' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.spp.index') }}">Data SPP</a></li>
                 <li class="{{ request()->segment(3) == 'tahun' ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.tahun.index') }}">Tahun Ajaran</a></li>
               </ul>
             </li>
@@ -235,6 +236,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous"></script>
   <script src="{{ url('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ url('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+  <script>
+    AutoNumeric.multiple('.numeric', { digitGroupSeparator: '.', decimalCharacter: ',', decimalPlaces: '0', unformatOnSubmit: true });
+  </script>
   <script>
     $(document).ready( function () {
         $('.dataTable').DataTable();
