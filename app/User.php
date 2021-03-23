@@ -28,4 +28,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function hasPermission($permission) 
+    {
+        return $this->role->permissions()->where('nama', $permission)->first() ?: false;
+    }
 }

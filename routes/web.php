@@ -28,3 +28,32 @@ Route::namespace('Auth')->group(function() {
 
 });
 
+Route::namespace('Admin')->middleware('auth:admin')->prefix('admin')->name('admin.')->group(function() {
+
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    Route::namespace('UserManager')->prefix('user-manager')->name('user-manager.')->group(function() {
+        
+        Route::get('/user', 'UserController@index')->name('user.index');
+        Route::post('/user', 'UserController@store')->name('user.store');
+        Route::get('/user/data/{user}', 'UserController@find')->name('user.find');
+        Route::patch('/user/{user}', 'UserController@update')->name('user.update');
+        Route::delete('/user/{user}', 'UserController@destroy')->name('user.destroy');
+
+        Route::get('/role', 'RoleController@index')->name('role.index');
+        Route::post('/role', 'RoleController@store')->name('role.store');
+        Route::get('/role/edit/{role}', 'RoleController@edit')->name('role.edit');
+        Route::patch('/role/{role}', 'RoleController@update')->name('role.update');
+        Route::delete('/role/{role}', 'RoleController@destroy')->name('role.destroy');
+
+        Route::get('/permission', 'PermissionController@index')->name('permission.index');
+        Route::post('/permission', 'PermissionController@store')->name('permission.store');
+        Route::get('/permission/data/{permission}', 'PermissionController@find')->name('permission.find');
+        Route::patch('/permission/{permission}', 'PermissionController@update')->name('permission.update');
+        Route::delete('/permission/{permission}', 'PermissionController@destroy')->name('permission.destroy');
+        
+
+    });
+
+});
+
