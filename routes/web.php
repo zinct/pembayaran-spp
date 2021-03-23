@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 
-    Route::namespace('Data')->prefix('data')->name('data.')->group(function() { // Master Data      
+    Route::namespace('Data')->prefix('data')->name('data.')->group(function() {
         
         Route::get('/siswa', 'SiswaController@index')->name('siswa.index');
         Route::post('/siswa', 'SiswaController@store')->name('siswa.store');
