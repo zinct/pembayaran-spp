@@ -14,10 +14,13 @@
   <link href="{{ url('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" />
 
-
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ url('assets/css/components.css') }}">
+  
+  <!-- Custom CSS -->
+  @yield('css')
+  
 </head>
 
 <body>
@@ -157,18 +160,18 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ url('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">{{ 'Indra Mahesa (Admin)' }}</div></a>
+            <img alt="image" src="{{ url('assets/img/avatars/' . Helper::nullreplace(auth()->user()->avatar, 'default.png')) }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }} ({{ auth()->user()->role->nama }})</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Menu</div>
-              <a href="features-profile.html" class="dropdown-item has-icon">
+              <a href="{{ route('admin.user-manager.profile.index') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
+              <a href="javascript:void(0)" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -193,7 +196,7 @@
                 <li><a href="{{ route('admin.user-manager.user.index') }}">Data User</a></li>
                 <li><a class="nav-link" href="{{ route('admin.user-manager.role.index') }}">Role & Permission</a></li>
                 <li><a class="nav-link" href="{{ route('admin.user-manager.permission.index') }}">Permission</a></li>
-                <li><a href="utilities-subscribe.html">Profile</a></li>
+                <li><a href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
               </ul>
             </li>
           </ul>

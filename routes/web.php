@@ -52,6 +52,9 @@ Route::namespace('Admin')->middleware('auth:admin')->prefix('admin')->name('admi
         Route::patch('/permission/{permission}', 'PermissionController@update')->name('permission.update');
         Route::delete('/permission/{permission}', 'PermissionController@destroy')->name('permission.destroy');
         
+        Route::get('/profile', 'ProfileController@index')->name('profile.index');
+        Route::post('/profile/{user}', 'ProfileController@update')->name('profile.update');
+        Route::get('/profile/delete-avatar', 'ProfileController@deleteAvatar')->name('profile.delete-avatar');
 
     });
 
