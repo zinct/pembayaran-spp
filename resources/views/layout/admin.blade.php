@@ -30,21 +30,21 @@
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="javascript:void(0)" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+          <li class="dropdown dropdown-list-toggle"><a href="javascript:void(0)" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Messages
                 <div class="float-right">
-                  <a href="#">Mark All As Read</a>
+                  <a href="javascript:void(0)">Mark All As Read</a>
                 </div>
               </div>
               <div class="dropdown-list-content dropdown-list-message">
-                <a href="#" class="dropdown-item dropdown-item-unread">
+                <a href="javascript:void(0)" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
+                    <img alt="image" src="{{ url('assets/img/avatars/default.png') }}" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -53,9 +53,9 @@
                     <div class="time">10 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item dropdown-item-unread">
+                <a href="javascript:void(0)" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="assets/img/avatar/avatar-2.png" class="rounded-circle">
+                    <img alt="image" src="{{ url('assets/img/avatars/default.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Dedik Sugiharto</b>
@@ -63,9 +63,9 @@
                     <div class="time">12 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item dropdown-item-unread">
+                <a href="javascript:void(0)" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="assets/img/avatar/avatar-3.png" class="rounded-circle">
+                    <img alt="image" src="{{ url('assets/img/avatars/default.png') }}" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -74,9 +74,9 @@
                     <div class="time">12 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle">
+                    <img alt="image" src="{{ url('assets/img/avatars/default.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Ardian Rahardiansyah</b>
@@ -84,9 +84,9 @@
                     <div class="time">16 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle">
+                    <img alt="image" src="{{ url('assets/img/avatars/default.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Alfa Zulkarnain</b>
@@ -96,19 +96,19 @@
                 </a>
               </div>
               <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                <a href="javascript:void(0)">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
           </li>
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+          <li class="dropdown dropdown-list-toggle"><a href="javascript:void(0)" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
                 <div class="float-right">
-                  <a href="#">Mark All As Read</a>
+                  <a href="javascript:void(0)">Mark All As Read</a>
                 </div>
               </div>
               <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread">
+                <a href="javascript:void(0)" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-icon bg-primary text-white">
                     <i class="fas fa-code"></i>
                   </div>
@@ -117,7 +117,7 @@
                     <div class="time text-primary">2 Min Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-icon bg-info text-white">
                     <i class="far fa-user"></i>
                   </div>
@@ -126,7 +126,7 @@
                     <div class="time">10 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-icon bg-success text-white">
                     <i class="fas fa-check"></i>
                   </div>
@@ -135,7 +135,7 @@
                     <div class="time">12 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-icon bg-danger text-white">
                     <i class="fas fa-exclamation-triangle"></i>
                   </div>
@@ -144,7 +144,7 @@
                     <div class="time">17 Hours Ago</div>
                   </div>
                 </a>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item">
                   <div class="dropdown-item-icon bg-info text-white">
                     <i class="fas fa-bell"></i>
                   </div>
@@ -155,11 +155,11 @@
                 </a>
               </div>
               <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                <a href="javascript:void(0)">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
           </li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+          <li class="dropdown"><a href="javascript:void(0)" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ url('assets/img/avatars/' . Helper::nullreplace(auth()->user()->avatar, 'default.png')) }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }} ({{ auth()->user()->role->nama }})</div></a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -184,19 +184,25 @@
             <a href="index.html">Pembayaran SPP</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="javascript:void(0)">SP</a>
           </div>
           <ul class="sidebar-menu">
             <li>
-              <a class="nav-link text-primary" href="https://demospp.isengoding.my.id/home"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+              <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
             </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Manajemen User</span></a>
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager') ? 'active' : '' }}">
+              <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Manajemen User</span></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ route('admin.user-manager.user.index') }}">Data User</a></li>
-                <li><a class="nav-link" href="{{ route('admin.user-manager.role.index') }}">Role & Permission</a></li>
-                <li><a class="nav-link" href="{{ route('admin.user-manager.permission.index') }}">Permission</a></li>
-                <li><a href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
+                @can('user-manager.user')
+                  <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'user') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.user.index') }}">Data User</a></li>
+                @endcan
+                @can('user-manager.role')
+                  <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'role') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.role.index') }}">Role & Permission</a></li>
+                @endcan
+                @can('user-manager.permission')
+                  <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'permission') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.permission.index') }}">Permission</a></li>
+                @endcan
+                <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'profile') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
               </ul>
             </li>
           </ul>
@@ -217,7 +223,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; PelajarKoding {{ date('Y') }}<div class="bullet"></div> Development By <a href="https://github.com/zinct">Indra Mahesa</a>
+          Copyright &copy; PelajarKoding {{ date('Y') }}<div class="bullet"></div> Made By <a href="https://github.com/zinct">Indra Mahesa</a>
         </div>
         <div class="footer-right">
           
@@ -240,7 +246,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous"></script>
   <script src="{{ url('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ url('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
   <script>
     AutoNumeric.multiple('.numeric', { digitGroupSeparator: '.', decimalCharacter: ',', decimalPlaces: '0', unformatOnSubmit: true });
   </script>

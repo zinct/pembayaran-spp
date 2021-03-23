@@ -20,7 +20,6 @@ class PermissionSeeder extends Seeder
             ['nama' => 'user-manager.user'],
             ['nama' => 'user-manager.role'],
             ['nama' => 'user-manager.permission'],
-            ['nama' => 'user-manager.profile'],
         ];   
     }
 }
