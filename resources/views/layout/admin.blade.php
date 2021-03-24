@@ -188,7 +188,7 @@
           </div>
           <ul class="sidebar-menu">
             <li>
-              <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+              <a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'dashboard') ? 'text-primary' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
             </li>
             <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Manajemen User</span></a>
