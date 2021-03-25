@@ -15,10 +15,9 @@ class CreatePembayaranTable extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('siswa_spp_id');
-            $table->double('jumlah');
-            $table->unsignedInteger('user_id');
-            $table->text('keterangan')->nullable();
+            $table->unsignedInteger('siswa_id');
+            $table->unsignedInteger('spp_id');
+            $table->enum('status', ['Lunas', 'Belum Lunas']);
             $table->timestamps();
         });
     }

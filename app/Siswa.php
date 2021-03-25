@@ -15,6 +15,6 @@ class Siswa extends Model
 
     public function spp()
     {
-        return $this->belongsToMany('App\Spp', 'siswa_spp');
+        return $this->belongsToMany('App\Spp', 'pembayaran');
     }
 }

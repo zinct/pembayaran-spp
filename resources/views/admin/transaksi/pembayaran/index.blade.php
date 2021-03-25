@@ -12,31 +12,24 @@
 @endsection
 
 @section('content')
-  <form action="{{ route('admin.transaksi.pembayaran.show') }}" method="GET">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-            <input class="form-control form-control-lg text-lg" id="search" name="nis" type="text" autofocus="on" placeholder="Masukan NIS siswa ex. 181912070084">
-          </div> 
-          <div class="row mt-1" style="min-height: 185px;"><div class="col-md-6 mx-auto">
-            <img src="{{ url('assets/img/search.png') }}" alt="" class="w-75" style="opacity: 0.3;">
+  <div id="app">
+    <form action="{{ route('admin.transaksi.pembayaran.show') }}" method="GET">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8 mx-auto">
+              <input class="form-control form-control-lg text-lg" v-on:keyup.enter.prevent="searchSiswa" id="search" name="nis" type="text" autofocus="on" placeholder="Masukan NIS siswa ex. 181912070084">
+            </div> 
+            <div class="row mt-1" style="min-height: 185px;"><div class="col-md-6 mx-auto">
+              <img src="{{ url('assets/img/search.png') }}" alt="" class="w-75" style="opacity: 0.3;">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 @endsection
 
 @section('script')
   @include('vendor.izitoast.toast')
-
-  <script>
-    $('#search').keypress(function(e) {
-      const key = e.which;
-      if(key == 13)
-        $('action').submit();
-
-    });
-  </script>
 @endsection

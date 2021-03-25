@@ -112,6 +112,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/pembayaran/detail', 'PembayaranController@show')->name('pembayaran.show');
         Route::post('/pembayaran/{siswa}', 'PembayaranController@store')->name('pembayaran.store');
         Route::delete('/pembayaran/{pembayaran}/{siswa}', 'PembayaranController@destroy')->name('pembayaran.destroy');
+        
+        Route::post('/transaksi/{siswa}', 'TransaksiController@store')->name('transaksi.store');
 
     });
 

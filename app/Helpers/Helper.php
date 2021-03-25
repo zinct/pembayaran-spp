@@ -41,4 +41,10 @@ class Helper  {
       return $value ? $value : $replace;
   }
 
+  public static function getMonth($i)
+  {
+      $months = [0, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      return $months[$i];
+  }
+
 }
