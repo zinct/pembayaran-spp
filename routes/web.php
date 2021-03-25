@@ -106,6 +106,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 
+    Route::namespace('Transaksi')->prefix('transaksi')->name('transaksi.')->group(function() {
+
+        Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
+        Route::get('/pembayaran/detail', 'PembayaranController@show')->name('pembayaran.show');
+        Route::post('/pembayaran/{siswa}', 'PembayaranController@store')->name('pembayaran.store');
+        Route::delete('/pembayaran/{pembayaran}/{siswa}', 'PembayaranController@destroy')->name('pembayaran.destroy');
+
+    });
+
     Route::namespace('Data')->prefix('data')->name('data.')->group(function() {
         
         Route::get('/siswa', 'SiswaController@index')->name('siswa.index');
@@ -113,6 +122,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/siswa/create', 'SiswaController@create')->name('siswa.create');
         Route::get('/siswa/edit/{siswa}', 'SiswaController@edit')->name('siswa.edit');
         Route::get('/siswa/data/{siswa}', 'SiswaController@find')->name('siswa.find');
+        Route::get('/siswa/{siswa}', 'SiswaController@show')->name('siswa.show');
         Route::patch('/siswa/{siswa}', 'SiswaController@update')->name('siswa.update');
         Route::delete('/siswa/{siswa}', 'SiswaController@destroy')->name('siswa.destroy');
 

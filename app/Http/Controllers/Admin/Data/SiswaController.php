@@ -26,6 +26,12 @@ class SiswaController extends BaseController
     {
         return $siswa;
     }
+
+    public function show(\App\Siswa $siswa)
+    {
+        $data['spp'] = \App\Spp::get();
+        return view('admin/data/siswa/show', $data, compact('siswa'));
+    }
     
     public function store(Request $request)
     {

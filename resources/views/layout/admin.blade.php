@@ -190,6 +190,10 @@
             <li>
               <a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'dashboard') ? 'text-primary' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
             </li>
+            <li class="menu-header">Transaction Management</li>
+            <li>
+              <a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'transaksi' && request()->segment(3) == 'pembayaran') ? 'text-primary' : '' }}" href="{{ route('admin.transaksi.pembayaran.index') }}"><i class="fas fa-money-bill"></i> <span>Pembayaran</span></a>
+            </li>
             <li class="menu-header">Data Management</li>
             <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'data') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-folder"></i> <span>Master Data</span></a>
@@ -201,7 +205,6 @@
                 <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'data' && request()->segment(3) == 'tahun') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.data.tahun.index') }}">Tahun Ajaran</a></li>
               </ul>
             </li>
-            <li class="menu-header">Setting</li>
             <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Manajemen User</span></a>
               <ul class="dropdown-menu">
@@ -259,9 +262,6 @@
   <script src="{{ url('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ url('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-  <script>
-    AutoNumeric.multiple('.numeric', { digitGroupSeparator: '.', decimalCharacter: ',', decimalPlaces: '0', unformatOnSubmit: true });
-  </script>
   <script>
     AutoNumeric.multiple('.numeric', { digitGroupSeparator: '.', decimalCharacter: ',', decimalPlaces: '0', unformatOnSubmit: true });
   </script>

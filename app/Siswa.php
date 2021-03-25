@@ -12,4 +12,9 @@ class Siswa extends Model
     {
         return $this->belongsTo('App\Kelas');
     }
+
+    public function spp()
+    {
+        return $this->belongsToMany('App\Spp', 'siswa_spp');
+    }
 }

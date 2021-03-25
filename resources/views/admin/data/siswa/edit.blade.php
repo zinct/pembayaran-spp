@@ -149,7 +149,6 @@
 
 @section('script')
   @include('vendor.izitoast.toast')
-
   
   <script src="{{ url('assets/vendor/dropify/dropify.js') }}"></script>
   <script>
