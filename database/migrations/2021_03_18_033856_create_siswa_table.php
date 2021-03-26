@@ -22,6 +22,7 @@ class CreateSiswaTable extends Migration
             $table->enum('kelamin', ['L', 'P']);
             $table->string('telp')->nullable();
             $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->string('avatar', 255)->nullable();
             $table->text('alamat')->nullable();
             $table->timestamps();
         });
