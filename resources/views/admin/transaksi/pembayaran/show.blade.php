@@ -13,7 +13,7 @@
 
 @section('content')
   <div id="app">
-    <form action="{{ route('admin.transaksi.transaksi.store', $siswa->id) }}" target="_blank" method="POST">
+    <form action="{{ route('admin.transaksi.transaksi.store', $siswa->id) }}" method="POST">
       @csrf
       <div class="card">
         <div class="card-body">
@@ -71,7 +71,7 @@
                       <span class="small">@{{ getMonth(cart.month) }}</span>
                     </div>
                     <div>
-                      <span>Rp. @{{ cart.nominal }}</span>
+                      <span>Rp. @{{ formatPrice(cart.nominal) }}</span>
                       <button type="button" class="btn text-danger" v-on:click="removeItem(cart.id, cart.month)"><i class="fas fa-times-circle"></i></button>
                     </div>
                     <input type="hidden" name="pembayaran_id[]" v-bind:value="cart.id">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="py-4">
                   <h6>Total Bayar</h6>
-                  <h4>Rp. @{{ calculateTotal }}-</h4>
+                  <h4>Rp. @{{ formatPrice(calculateTotal) }}-</h4>
                 </div>
                 <button type="submit" :disabled="this.carts.length == 0" class="btn btn-primary btn-primary">Lanjutkan Pembayaran</button>
                 </div>
@@ -97,65 +97,69 @@
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  @include('vendor/izitoast/toast')
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
-<script>
-  const app = new Vue({
-    el: '#app',
-    data: {
-      isLoading: false,
-      carts: [],
-      total: 0
-    },
-    methods: {
-      addItem: function(id, month) {
-        this.isLoading = true;
-        fetch(`{{ url('admin/data/spp/data/${id}') }}`).then(response => {
-          return response.json();
-        }).then(data => {
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isLoading: false,
+        carts: [],
+        total: 0
+      },
+      methods: {
+        addItem: function(id, month) {
+          this.isLoading = true;
+          fetch(`{{ url('admin/data/spp/data/${id}') }}`).then(response => {
+            return response.json();
+          }).then(data => {
 
+            for (let i = 0; i < this.carts.length; i++) {
+              if(this.carts[i].id == data.id && this.carts[i].month == month) {
+                this.isLoading = false;
+                return;
+              }
+            }
+
+            this.carts.push({
+              id: data.id,
+              nama: data.nama,
+              nominal: data.nominal,
+              tipe: data.tipe,
+              month: month,
+            });
+
+            this.isLoading = false;
+
+          }).catch(err => {
+            console.warn('Terjadi Kesalahan!', err);
+          });
+        },
+        removeItem: function(id, month) {
           for (let i = 0; i < this.carts.length; i++) {
-            if(this.carts[i].id == data.id && this.carts[i].month == month) {
-              this.isLoading = false;
+            if(this.carts[i].id == id && this.carts[i].month == month) {
+              this.carts.splice(i, 1);
               return;
             }
           }
-
-          this.carts.push({
-            id: data.id,
-            nama: data.nama,
-            nominal: data.nominal,
-            tipe: data.tipe,
-            month: month,
-          });
-
-          this.isLoading = false;
-
-        }).catch(err => {
-          console.warn('Terjadi Kesalahan!', err);
-        });
-      },
-      removeItem: function(id, month) {
-        for (let i = 0; i < this.carts.length; i++) {
-          if(this.carts[i].id == id && this.carts[i].month == month) {
-            this.carts.splice(i, 1);
-            return;
-          }
+        },
+        getMonth: function(month) {
+          const months = [0, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+          return months[month]
+        },
+        formatPrice: function(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
       },
-      getMonth: function(month) {
-        const months = [0, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        return months[month]
+      computed: {
+        calculateTotal: function() {
+          if(this.carts.length == 0) return 0;
+          return this.carts.reduce((total, data) => {
+            return total + Number(data.nominal);
+          }, 0);
+        }
       }
-    },
-    computed: {
-      calculateTotal: function() {
-        if(this.carts.length == 0) return 0;
-        return this.carts.reduce((total, data) => {
-          return total + Number(data.nominal);
-        }, 0);
-      }
-    }
-  });
-</script>
+    });
+  </script>
 @endsection
