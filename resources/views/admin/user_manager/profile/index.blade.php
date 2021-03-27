@@ -1,7 +1,14 @@
 @extends('layout/admin')
 
 @section('header')
-  <h1>Profile</h1>
+  <div class="section-header-back">
+    <a href="{{ route('admin.dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <h1>Data Profile</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+    <div class="breadcrumb-item">Data Profile</div>
+  </div>
 @endsection
 
 @section('css')

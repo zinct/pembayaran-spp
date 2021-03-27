@@ -1,8 +1,14 @@
 @extends('layout/admin')
 
 @section('header')
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Edit Role</h1>
+  <div class="section-header-back">
+    <a href="{{ route('admin.user-manager.role.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <h1>Edit Role</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+    <div class="breadcrumb-item"><a href="{{ route('admin.user-manager.role.index') }}">Data Role</a></div>
+    <div class="breadcrumb-item">Edit Role</div>
   </div>
 @endsection
 

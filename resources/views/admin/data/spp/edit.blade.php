@@ -6,7 +6,7 @@
   </div>
   <h1>Edit SPP</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
     <div class="breadcrumb-item"><a href="{{ route('admin.data.spp.index') }}">SPP</a></div>
     <div class="breadcrumb-item">Edit SPP</div>
   </div>

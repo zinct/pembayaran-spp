@@ -6,8 +6,8 @@
   </div>
   <h1>Tambah Siswa</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-    <div class="breadcrumb-item"><a href="{{ route('admin.data.siswa.index') }}">Siswa</a></div>
+    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+    <div class="breadcrumb-item"><a href="{{ route('admin.data.siswa.index') }}">Data Siswa</a></div>
     <div class="breadcrumb-item">Tambah Siswa</div>
   </div>
 @endsection

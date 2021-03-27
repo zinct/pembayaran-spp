@@ -1,7 +1,14 @@
 @extends('layout/admin')
 
 @section('header')
-  <h1>Data Tahun Ajaran</h1>
+  <div class="section-header-back">
+    <a href="{{ route('admin.dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <h1>Data Tahun</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+    <div class="breadcrumb-item">Data Tahun</div>
+  </div>
 @endsection
 
 @section('content')

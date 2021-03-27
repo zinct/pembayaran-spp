@@ -6,8 +6,8 @@
   </div>
   <h1>Pembayaran</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-    <div class="breadcrumb-item">Pembayaran</div>
+    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+    <div class="breadcrumb-item">Cari Siswa</div>
   </div>
 @endsection
 
