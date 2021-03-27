@@ -13,6 +13,11 @@ class Tagihan extends Model
         return $this->belongsTo('App\Spp');
     }
 
+    public function spp()
+    {
+        return $this->belongsTo('App\Spp');
+    }
+
     public function view()
     {
         return $this->belongsTo('App\TagihanView');
