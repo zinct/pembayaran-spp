@@ -13,7 +13,7 @@
 
 @section('content')
   <div id="app">
-    <form action="{{ route('admin.transaksi.pembayaran.show') }}" method="GET">
+    <form action="{{ route('admin.transaksi.pembayaran.create') }}" method="GET">
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -32,4 +32,5 @@
 
 @section('script')
   @include('vendor.izitoast.toast')
+  @include('vendor.izitoast.error')
 @endsection

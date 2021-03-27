@@ -84,6 +84,7 @@
 
 @section('script')
   @include('vendor.izitoast.toast')
+  @include('vendor.izitoast.error')
 
   <script>
     function deleteData(id) {

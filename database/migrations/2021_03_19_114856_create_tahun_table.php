@@ -13,6 +13,7 @@ class CreateTahunTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('tahun');
         Schema::create('tahun', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 255);

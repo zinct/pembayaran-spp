@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePembayaranTable extends Migration
+class CreateKelasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePembayaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembayaran', function (Blueprint $table) {
+        Schema::dropIfExists('kelas');
+        Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('siswa_id');
-            $table->unsignedInteger('spp_id');
-            $table->enum('status', ['Lunas', 'Belum Lunas']);
+            $table->string('nama', 255);
+            $table->foreignId('kompetensi_id')->constrained('kompetensi');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePembayaranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pembayaran');
+        Schema::dropIfExists('kelas');
     }
 }

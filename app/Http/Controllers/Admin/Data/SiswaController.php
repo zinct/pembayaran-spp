@@ -29,7 +29,9 @@ class SiswaController extends BaseController
 
     public function show(\App\Siswa $siswa)
     {
-        $data['spp'] = \App\Spp::get();
+        $data['spp'] = \App\Spp::whereHas('kelas', function($query) use($siswa) {
+            return $query->where('kelas_id', $siswa->kelas_id);
+        })->get();
         return view('admin/data/siswa/show', $data, compact('siswa'));
     }
     
@@ -67,8 +69,7 @@ class SiswaController extends BaseController
                 Image::make($fileLocation)
                 ->resize(500, null, function($constraint) {
                     $constraint->aspectRatio();
-                })
-                ->crop(500, 500)->save($fileLocation);
+                })->save($fileLocation);
     
                 $model->avatar = $filename;
             }
@@ -121,8 +122,7 @@ class SiswaController extends BaseController
                 Image::make($fileLocation)
                 ->resize(500, null, function($constraint) {
                     $constraint->aspectRatio();
-                })
-                ->crop(500, 500)->save($fileLocation);
+                })->save($fileLocation);
     
                 $model->avatar = $filename;
             }
@@ -136,7 +136,13 @@ class SiswaController extends BaseController
     
     public function destroy($id)
     {
-        \App\Siswa::destroy($id);
-        return back()->with('success', 'Data Berhasil Dihapus');
+        try {
+            \App\Siswa::destroy($id);
+            return back()->with('success', 'Data Berhasil Dihapus');
+        } catch (\Exception $e) {
+            if($e->getCode() == 23000)
+                return back()->with('error', 'Data Ini Sedang Digunakan');
+            return back()->with('error', "Terjadi Kesalahan Dengan Kode {$e->getCode()}");
+        }
     }
 }

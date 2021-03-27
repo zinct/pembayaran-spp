@@ -44,7 +44,13 @@ class TahunController extends BaseController
     
     public function destroy($id)
     {
-        \App\Tahun::destroy($id);
-        return back()->with('success', 'Data Berhasil Dihapus');
+        try {
+            \App\Tahun::destroy($id);
+            return back()->with('success', 'Data Berhasil Dihapus');
+        } catch (\Exception $e) {
+            if($e->getCode() == 23000)
+                return back()->with('error', 'Data Ini Sedang Digunakan');
+            return back()->with('error', "Terjadi Kesalahan Dengan Kode {$e->getCode()}");
+        }
     }
 }

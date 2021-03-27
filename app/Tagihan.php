@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tagihan extends Model
 {
-    protected $table = 'pembayaran';
+    protected $table = 'tagihan';
 
     public function spp()
     {

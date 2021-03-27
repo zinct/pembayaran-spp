@@ -17,11 +17,4 @@ class Spp extends Model
     {
         return $this->belongsTo('App\Tahun');
     }
-
-    protected static function booted()
-    {
-        self::deleted(function ($spp) {
-            $spp->kelas()->detach();
-        });
-    }
 }

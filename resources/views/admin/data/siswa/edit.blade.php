@@ -6,7 +6,7 @@
   </div>
   <h1>Edit Siswa</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
     <div class="breadcrumb-item"><a href="{{ route('admin.data.siswa.index') }}">Siswa</a></div>
     <div class="breadcrumb-item">Edit Siswa</div>
   </div>
@@ -149,6 +149,7 @@
 
 @section('script')
   @include('vendor.izitoast.toast')
+  @include('vendor.izitoast.error')
   
   <script src="{{ url('assets/vendor/dropify/dropify.js') }}"></script>
   <script>

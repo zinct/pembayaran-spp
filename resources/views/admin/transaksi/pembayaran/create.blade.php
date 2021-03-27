@@ -2,7 +2,7 @@
 
 @section('header')
   <div class="section-header-back">
-    <a href="{{ route('admin.dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    <a href="{{ route('admin.transaksi.pembayaran.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
   </div>
   <h1>Pembayaran</h1>
   <div class="section-header-breadcrumb">
@@ -14,7 +14,7 @@
 
 @section('content')
   <div id="app">
-    <form action="{{ route('admin.transaksi.transaksi.store', $siswa->id) }}" method="POST">
+    <form action="{{ route('admin.transaksi.pembayaran.store', $siswa->id) }}" method="POST">
       @csrf
       <div class="card">
         <div class="card-body">
@@ -23,13 +23,13 @@
               <div id="accordion">
                 @foreach ($siswa->spp as $row)
                   <div class="accordion">
-                    <div class="accordion-header bg-primary text-white collapsed" role="button" data-toggle="collapse" data-target="#panel-body-{{ $row->id }}">
+                    <div class="accordion-header bg-primary text-white collapsed" role="button" data-toggle="collapse" data-target="#panel-body-{{ $row->pivot->id }}">
                       <div class="d-flex justify-content-between">
                         <h4>{{ $row->nama }}</h4>
                         <h4>{{ $row->tahun->nama }}</h4>
                       </div>
                     </div>
-                    <div class="accordion-body collapse" id="panel-body-{{ $row->id }}" data-parent="#accordion">
+                    <div class="accordion-body collapse" id="panel-body-{{ $row->pivot->id }}" data-parent="#accordion">
                       <div class="row">
                         @for ($i = 1; $i <= 12; $i++)
                           <div class="col-4">
@@ -39,12 +39,12 @@
                                 <span>{{ Helper::getMonth($i) }}</span>
                               </div>
                               @php
-                                $bulan_sekarang = DB::table('v_transaksi')->where('id', $row->id)->first()->bulan_ke;
+                              $bulan_sekarang = DB::table('v_tagihan')->find($row->pivot->id)->bulan_ke;
                               @endphp
                               @if ($bulan_sekarang >= $i)
                                 <button type="button" class="btn btn-sm btn-success" style="width: 100%">Lunas</button>
                               @elseif ($bulan_sekarang == ($i - 1))
-                                <button type="button" class="btn btn-sm btn-primary" v-on:click="addItem({{ $row->id }}, {{ $i }})" style="width: 100%">Bayar</button>
+                                <button type="button" class="btn btn-sm btn-primary" v-on:click="addItem({{ $row->pivot->id }}, {{ $i }})" style="width: 100%">Bayar</button>
                               @else
                                 <button type="button" class="btn btn-sm btn-secondary" style="width: 100%">Belum Lunas</button>
                               @endif
@@ -75,7 +75,7 @@
                       <span>Rp. @{{ formatPrice(cart.nominal) }}</span>
                       <button type="button" class="btn text-danger" v-on:click="removeItem(cart.id, cart.month)"><i class="fas fa-times-circle"></i></button>
                     </div>
-                    <input type="hidden" name="pembayaran_id[]" v-bind:value="cart.id">
+                    <input type="hidden" name="tagihan_id[]" v-bind:value="cart.id">
                     <input type="hidden" v-bind:name="'bulan[' + cart.id + ']'" v-bind:value="cart.month">
                   </div>
                   <div v-if="carts.length == 0">
@@ -99,6 +99,8 @@
 
 @section('script')
   @include('vendor/izitoast/toast')
+  @include('vendor/izitoast/error')
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
   <script>
@@ -112,7 +114,7 @@
       methods: {
         addItem: function(id, month) {
           this.isLoading = true;
-          fetch(`{{ url('admin/data/spp/data/${id}') }}`).then(response => {
+          fetch(`{{ url('admin/transaksi/tagihan/data/${id}') }}`).then(response => {
             return response.json();
           }).then(data => {
 
@@ -125,9 +127,9 @@
 
             this.carts.push({
               id: data.id,
-              nama: data.nama,
-              nominal: data.nominal,
-              tipe: data.tipe,
+              nama: data.spp.nama,
+              nominal: (data.spp.nominal / 12).toFixed(0),
+              tipe: data.spp.tipe,
               month: month,
             });
 

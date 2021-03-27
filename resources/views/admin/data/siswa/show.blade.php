@@ -17,7 +17,6 @@
 @endsection
 
 @section('content')
-  
   <div class="card card-primary card-outline">
     <div class="card-body">
       <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
@@ -26,7 +25,7 @@
         </li>
         @if ($siswa->status != 'Tidak Aktif')
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#pembayaran" role="tab" aria-controls="profile" aria-selected="false">Pembayaran</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tagihan" role="tab" aria-controls="profile" aria-selected="false">Tagihan</a>
           </li>
         @endif
         <li class="nav-item">
@@ -100,8 +99,8 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="pembayaran" role="tabpanel" aria-labelledby="profile-tab">
-          <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#pembayaran-modal">Tambah Pembayaran</button>
+        <div class="tab-pane fade" id="tagihan" role="tabpanel" aria-labelledby="profile-tab">
+          <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tagihan-modal">Tambah Tagihan</button>
 
           <div id="accordion">
             @foreach ($siswa->spp as $row)
@@ -113,26 +112,26 @@
                   </div>
                 </div>
                 <div class="accordion-body collapse" id="panel-body-{{ $row->id }}" data-parent="#accordion">
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>Nominal</th>
-                            <th>Total Bayar</th>
-                            <th>Sisa</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Rp.25,000</td>
-                            <td>Rp.0</td>
-                            <td>Rp.25,000</td>
-                            <td><i class="fas fa-times-circle text-info mr-2  "></i>Belum Lunas</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div class="row">
+                    @for ($i = 1; $i <= 12; $i++)
+                      <div class="col-4">
+                        <div class="card">
+                          <div class="card-body px-0">
+                            <h6>Rp. {{ number_format($row->nominal / 12) }}</h6>
+                            <span>{{ Helper::getMonth($i) }}</span>
+                          </div>
+                          @php
+                          $bulan_sekarang = DB::table('v_tagihan')->find($row->pivot->id)->bulan_ke;
+                          @endphp
+                          @if ($bulan_sekarang >= $i)
+                            <button type="button" class="btn btn-sm btn-success" style="width: 100%">Lunas</button>
+                          @else
+                            <button type="button" class="btn btn-sm btn-secondary" style="width: 100%">Belum Lunas</button>
+                          @endif
+                        </div>
+                      </div>
+                    @endfor
+                  </div> 
                   <button onclick="deleteData({{ $row->id }}, {{ $siswa->id }})" data-toggle="modal" data-target="#delete-modal" class="btn btn-sm btn-danger float-right mb-3"><i class="fas fa-trash"></i></button>
                 </div>
               </div>
@@ -146,9 +145,9 @@
 @endsection
 
 @section('modal')
-  <form action="{{ route('admin.transaksi.pembayaran.store', $siswa->id) }}" method="POST">
+  <form action="{{ route('admin.transaksi.tagihan.store', $siswa->id) }}" method="POST">
     @csrf
-    <div class="modal fade" id="pembayaran-modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="tagihan-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -202,13 +201,14 @@
 
 @section('script')
   @include('vendor.izitoast.toast')
+  @include('vendor.izitoast.error')
   
   <script src="{{ url('assets/vendor/dropify/dropify.js') }}"></script>
   <script>
     $('.dropify').dropify();
 
     function deleteData(id, siswa_id) {
-      $('#delete-form').attr('action', `{{ url('admin/transaksi/pembayaran/${id}/${siswa_id}') }}`);
+      $('#delete-form').attr('action', `{{ url('admin/transaksi/tagihan/${id}/${siswa_id}') }}`);
     }
   </script>
 @endsection

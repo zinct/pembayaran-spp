@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Transaksi;
+namespace App\Http\Controllers\Admin\transaksi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 
 class PembayaranController extends Controller
 {
@@ -11,30 +12,33 @@ class PembayaranController extends Controller
     {
         return view('admin.transaksi.pembayaran.index');
     }
-
-    public function show(Request $request)
+    
+    public function create(Request $request)
     {
         $data['siswa'] = \App\Siswa::where('nis', $request->nis)->first();
         
         if($data['siswa'] == null)
-            return back()->with('success', 'Maaf siswa tidak ditemukan');
+            return back()->with('error', 'Maaf siswa tidak ditemukan');
 
-        return view('admin.transaksi.pembayaran.show', $data);
+        return view('admin.transaksi.pembayaran.create', $data);
     }
 
     public function store(Request $request, $id)
     {
-        $siswa = \App\Siswa::find($id);
-        $siswa->spp()->attach($request->spp_id, [
-            'status' => 'Belum Lunas',
-        ]);
-        return back()->with('success', 'Pembayaran Berhasil DiUpdate');
-    }
+        DB::transaction(function() use($request) {
 
-    public function destroy($id, $siswa_id)
-    {
-        $siswa = \App\Siswa::find($siswa_id);
-        $siswa->spp()->detach($id);
-        return back()->with('success', 'Data Pembayaran Berhasil Dihapus');
+            foreach($request->tagihan_id as $tagihan_id) {
+                $model = new \App\Pembayaran();
+                $model->tgl_pembayaran = date('Y-m-d H:i:s');
+                $model->tagihan_id = $tagihan_id;
+                $model->jumlah = \App\Tagihan::find($tagihan_id)->spp->nominal / 12;
+                $model->bulan_ke = $request->bulan[$tagihan_id];
+                $model->user_id = auth()->user()->id;
+                $model->save();
+            }
+            
+        });
+
+        return back()->with('success', 'Berhasil Melakukan Pembayaran');
     }
 }

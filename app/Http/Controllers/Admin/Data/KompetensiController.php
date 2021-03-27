@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\data;
 
 use App\Http\Controllers\BaseController;
+use Exception;
 use Illuminate\Http\Request;
 
 class KompetensiController extends BaseController
@@ -44,7 +45,13 @@ class KompetensiController extends BaseController
     
     public function destroy($id)
     {
-        \App\Kompetensi::destroy($id);
-        return back()->with('success', 'Data Berhasil Dihapus');
+        try {
+            \App\Kompetensi::destroy($id);
+            return back()->with('success', 'Data Berhasil Dihapus');
+        } catch (\Exception $e) {
+            if($e->getCode() == 23000)
+                return back()->with('error', 'Data Ini Sedang Digunakan');
+            return back()->with('error', "Terjadi Kesalahan Dengan Kode {$e->getCode()}");
+        }
     }
 }

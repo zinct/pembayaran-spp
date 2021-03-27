@@ -13,15 +13,17 @@ class CreateSiswaTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('siswa');
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->string('nisn', 191)->unique();
             $table->string('nis', 191)->unique();
             $table->string('nama', 255);
-            $table->unsignedInteger('kelas_id');
+            $table->foreignId('kelas_id')->constrained('kelas');
             $table->enum('kelamin', ['L', 'P']);
             $table->string('telp')->nullable();
             $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->text('avatar')->nullable();
             $table->text('alamat')->nullable();
             $table->timestamps();
         });

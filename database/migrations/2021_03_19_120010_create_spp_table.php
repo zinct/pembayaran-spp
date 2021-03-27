@@ -13,10 +13,11 @@ class CreateSppTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('spp');
         Schema::create('spp', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 255);
-            $table->unsignedInteger('tahun_id');
+            $table->foreignId('tahun_id')->constrained('tahun');
             $table->enum('tipe', ['Bulanan', 'Bebas']);
             $table->double('nominal');
             $table->timestamps();

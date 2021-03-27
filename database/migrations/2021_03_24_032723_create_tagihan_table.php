@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKompetensiTable extends Migration
+class CreateTagihanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateKompetensiTable extends Migration
      */
     public function up()
     {
-        Schema::create('kompetensi', function (Blueprint $table) {
+        Schema::dropIfExists('tagihan');
+        Schema::create('tagihan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 255);
+            $table->foreignId('siswa_id')->constrained('siswa');
+            $table->foreignId('spp_id')->constrained('spp');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateKompetensiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kompetensi');
+        Schema::dropIfExists('tagihan');
     }
 }

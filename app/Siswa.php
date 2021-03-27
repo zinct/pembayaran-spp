@@ -15,6 +15,6 @@ class Siswa extends Model
 
     public function spp()
     {
-        return $this->belongsToMany('App\Spp', 'pembayaran');
+        return $this->belongsToMany('App\Spp', 'tagihan')->withPivot('id');
     }
 }

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class TagihanView extends Model
 {
-    protected $table = 'v_transaksi';
+    protected $table = 'v_tagihan';
 }

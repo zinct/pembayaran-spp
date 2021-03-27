@@ -13,10 +13,11 @@ class CreatePermissionRoleTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('permission_role');
         Schema::create('permission_role', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('role_id');
-            $table->unsignedInteger('permission_id');
+            $table->foreignId('role_id')->constrained('role');
+            $table->foreignId('permission_id')->constrained('permission');
             $table->timestamps();
         });
     }

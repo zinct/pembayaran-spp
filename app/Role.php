@@ -12,11 +12,4 @@ class Role extends Model
     {
         return $this->belongsToMany('\App\Permission');
     }
-
-    protected static function booted()
-    {
-        self::deleted(function ($role) {
-            $role->permissions()->detach();
-        });
-    }
 }
