@@ -97,6 +97,13 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 
     });
 
+    Route::namespace('Laporan')->prefix('laporan')->name('laporan.')->group(function() {
+
+        Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
+        Route::get('/pembayaran/laporan', 'PembayaranController@laporan')->name('pembayaran.laporan');
+
+    });
+
     Route::namespace('UserManager')->prefix('user-manager')->name('user-manager.')->group(function() {
         
         Route::middleware('can:user-manager.user')->group(function() {

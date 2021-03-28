@@ -74,6 +74,17 @@
               </li>
             @endcan
             @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
+            <li class="menu-header">Info Management</li>
+            @endcanany
+            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan') ? 'active' : '' }}">
+              <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-bullhorn"></i> <span>Laporan</span></a>
+              <ul class="dropdown-menu">
+                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan' && request()->segment(3) == 'pembayaran') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.pembayaran.index') }}">Pembayaran</a></li>
+              </ul>
+            </li>
+            @endcanany
+            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
             <li class="menu-header">Data Management</li>
             @endcanany
             @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
@@ -131,7 +142,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; PelajarKoding {{ date('Y') }}<div class="bullet"></div> Made By <a href="https://github.com/zinct">Indra Mahesa</a>
+          Pembayaran SPP <div class="bullet"></div> Copyright &copy; 2020 / 2021 by <a href="https://github.com/zinct">Indra Mahesa</a>
         </div>
         <div class="footer-right">
           
