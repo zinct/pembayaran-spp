@@ -13,9 +13,9 @@ class Tagihan extends Model
         return $this->belongsTo('App\Spp');
     }
 
-    public function spp()
+    public function siswa()
     {
-        return $this->belongsTo('App\Spp');
+        return $this->belongsTo('App\Siswa');
     }
 
     public function view()
