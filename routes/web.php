@@ -136,4 +136,11 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 
     });
 
+    Route::namespace('Setting')->prefix('setting')->name('setting.')->group(function() {
+        
+        Route::get('/identitas', 'IdentitasController@index')->name('identitas.index');
+        Route::post('/identitas', 'IdentitasController@store')->name('identitas.store');
+        
+    });
+
 });

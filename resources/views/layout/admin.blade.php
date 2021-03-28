@@ -124,6 +124,14 @@
                 <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'profile') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
               </ul>
             </li>
+            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'data') ? 'active' : '' }}">
+              <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-wrench"></i> <span>Setting</span></a>
+              <ul class="dropdown-menu">
+                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'setting' && request()->segment(3) == 'identitas') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.setting.identitas.index') }}">Identitas</a></li>
+              </ul>
+            </li>
+            @endcanany
           </ul>      
         </aside>
       </div>
