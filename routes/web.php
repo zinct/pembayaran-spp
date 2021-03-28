@@ -34,52 +34,66 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 
     Route::namespace('Data')->prefix('data')->name('data.')->group(function() {
         
-        Route::get('/siswa', 'SiswaController@index')->name('siswa.index');
-        Route::post('/siswa', 'SiswaController@store')->name('siswa.store');
-        Route::get('/siswa/create', 'SiswaController@create')->name('siswa.create');
-        Route::get('/siswa/edit/{siswa}', 'SiswaController@edit')->name('siswa.edit');
-        Route::get('/siswa/data/{siswa}', 'SiswaController@find')->name('siswa.find');
-        Route::get('/siswa/{siswa}', 'SiswaController@show')->name('siswa.show');
-        Route::patch('/siswa/{siswa}', 'SiswaController@update')->name('siswa.update');
-        Route::delete('/siswa/{siswa}', 'SiswaController@destroy')->name('siswa.destroy');
+        Route::middleware('can:data.siswa')->group(function() {
+            Route::get('/siswa', 'SiswaController@index')->name('siswa.index');
+            Route::post('/siswa', 'SiswaController@store')->name('siswa.store');
+            Route::get('/siswa/create', 'SiswaController@create')->name('siswa.create');
+            Route::get('/siswa/edit/{siswa}', 'SiswaController@edit')->name('siswa.edit');
+            Route::get('/siswa/data/{siswa}', 'SiswaController@find')->name('siswa.find');
+            Route::get('/siswa/{siswa}', 'SiswaController@show')->name('siswa.show');
+            Route::patch('/siswa/{siswa}', 'SiswaController@update')->name('siswa.update');
+            Route::delete('/siswa/{siswa}', 'SiswaController@destroy')->name('siswa.destroy');
+        });
 
-        Route::get('/spp', 'SppController@index')->name('spp.index');
-        Route::post('/spp', 'SppController@store')->name('spp.store');
-        Route::get('/spp/create', 'SppController@create')->name('spp.create');
-        Route::get('/spp/edit/{spp}', 'SppController@edit')->name('spp.edit');
-        Route::get('/spp/data/{spp}', 'SppController@find')->name('spp.find');
-        Route::patch('/spp/{spp}', 'SppController@update')->name('spp.update');
-        Route::delete('/spp/{spp}', 'SppController@destroy')->name('spp.destroy');
+        Route::middleware('can:data.spp')->group(function() {
+            Route::get('/spp', 'SppController@index')->name('spp.index');
+            Route::post('/spp', 'SppController@store')->name('spp.store');
+            Route::get('/spp/create', 'SppController@create')->name('spp.create');
+            Route::get('/spp/edit/{spp}', 'SppController@edit')->name('spp.edit');
+            Route::get('/spp/data/{spp}', 'SppController@find')->name('spp.find');
+            Route::patch('/spp/{spp}', 'SppController@update')->name('spp.update');
+            Route::delete('/spp/{spp}', 'SppController@destroy')->name('spp.destroy');
+        });
 
-        Route::get('/kelas', 'KelasController@index')->name('kelas.index');
-        Route::post('/kelas', 'KelasController@store')->name('kelas.store');
-        Route::get('/kelas/data/{kelas}', 'KelasController@find')->name('kelas.find');
-        Route::patch('/kelas/{kelas}', 'KelasController@update')->name('kelas.update');
-        Route::delete('/kelas/{kelas}', 'KelasController@destroy')->name('kelas.destroy');
+        Route::middleware('can:data.kelas')->group(function() {
+            Route::get('/kelas', 'KelasController@index')->name('kelas.index');
+            Route::post('/kelas', 'KelasController@store')->name('kelas.store');
+            Route::get('/kelas/data/{kelas}', 'KelasController@find')->name('kelas.find');
+            Route::patch('/kelas/{kelas}', 'KelasController@update')->name('kelas.update');
+            Route::delete('/kelas/{kelas}', 'KelasController@destroy')->name('kelas.destroy');
+        });
 
-        Route::get('/kompetensi', 'KompetensiController@index')->name('kompetensi.index');
-        Route::post('/kompetensi', 'KompetensiController@store')->name('kompetensi.store');
-        Route::get('/kompetensi/data/{kompetensi}', 'KompetensiController@find')->name('kompetensi.find');
-        Route::patch('/kompetensi/{kompetensi}', 'KompetensiController@update')->name('kompetensi.update');
-        Route::delete('/kompetensi/{kompetensi}', 'KompetensiController@destroy')->name('kompetensi.destroy');
+        Route::middleware('can:data.kompetensi')->group(function() {
+            Route::get('/kompetensi', 'KompetensiController@index')->name('kompetensi.index');
+            Route::post('/kompetensi', 'KompetensiController@store')->name('kompetensi.store');
+            Route::get('/kompetensi/data/{kompetensi}', 'KompetensiController@find')->name('kompetensi.find');
+            Route::patch('/kompetensi/{kompetensi}', 'KompetensiController@update')->name('kompetensi.update');
+            Route::delete('/kompetensi/{kompetensi}', 'KompetensiController@destroy')->name('kompetensi.destroy');
+        });
 
-        Route::get('/tahun', 'TahunController@index')->name('tahun.index');
-        Route::post('/tahun', 'TahunController@store')->name('tahun.store');
-        Route::get('/tahun/data/{tahun}', 'TahunController@find')->name('tahun.find');
-        Route::patch('/tahun/{tahun}', 'TahunController@update')->name('tahun.update');
-        Route::delete('/tahun/{tahun}', 'TahunController@destroy')->name('tahun.destroy');
+        Route::middleware('can:data.tahun')->group(function() {
+            Route::get('/tahun', 'TahunController@index')->name('tahun.index');
+            Route::post('/tahun', 'TahunController@store')->name('tahun.store');
+            Route::get('/tahun/data/{tahun}', 'TahunController@find')->name('tahun.find');
+            Route::patch('/tahun/{tahun}', 'TahunController@update')->name('tahun.update');
+            Route::delete('/tahun/{tahun}', 'TahunController@destroy')->name('tahun.destroy');
+        });
 
     });
 
     Route::namespace('Transaksi')->prefix('transaksi')->name('transaksi.')->group(function() {
 
-        Route::get('/tagihan/data/{tagihan}', 'TagihanController@find')->name('tagihan.find');
-        Route::post('/tagihan/{siswa}', 'TagihanController@store')->name('tagihan.store');
-        Route::delete('/tagihan/{tagihan}/{siswa}', 'TagihanController@destroy')->name('tagihan.destroy');
-        
-        Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
-        Route::get('/pembayaran/create', 'PembayaranController@create')->name('pembayaran.create');
-        Route::post('/pembayaran/{siswa}', 'PembayaranController@store')->name('pembayaran.store');
+        Route::middleware('can:transaksi.tagihan')->group(function() {
+            Route::get('/tagihan/data/{tagihan}', 'TagihanController@find')->name('tagihan.find');
+            Route::post('/tagihan/{siswa}', 'TagihanController@store')->name('tagihan.store');
+            Route::delete('/tagihan/{tagihan}/{siswa}', 'TagihanController@destroy')->name('tagihan.destroy');
+        });
+
+        Route::middleware('can:transaksi.pembayaran')->group(function() {
+            Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
+            Route::get('/pembayaran/create', 'PembayaranController@create')->name('pembayaran.create');
+            Route::post('/pembayaran/{siswa}', 'PembayaranController@store')->name('pembayaran.store');
+        });
 
     });
 

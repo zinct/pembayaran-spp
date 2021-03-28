@@ -17,6 +17,13 @@ class PermissionSeeder extends Seeder
     public function getData()
     {
         return [
+            ['nama' => 'transaksi.pembayaran'],
+            ['nama' => 'transaksi.tagihan'],
+            ['nama' => 'data.siswa'],
+            ['nama' => 'data.kelas'],
+            ['nama' => 'data.kompetensi'],
+            ['nama' => 'data.spp'],
+            ['nama' => 'data.tahun'],
             ['nama' => 'user-manager.user'],
             ['nama' => 'user-manager.role'],
             ['nama' => 'user-manager.permission'],

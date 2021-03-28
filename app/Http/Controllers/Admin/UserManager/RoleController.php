@@ -60,7 +60,7 @@ class RoleController extends BaseController
         }
         
         $model->permissions()->sync($permissions);
-        return redirect()->route('admin.user-manager.role.index')->with('success', 'Data Berhasil DiUbah');
+        return back()->with('success', 'Data Berhasil DiUpdate');
     }
     
     public function destroy($id)

@@ -100,8 +100,9 @@
           </div>
         </div>
         <div class="tab-pane fade" id="tagihan" role="tabpanel" aria-labelledby="profile-tab">
-          <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tagihan-modal">Tambah Tagihan</button>
-
+          @can('transaksi.tagihan')
+            <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tagihan-modal">Tambah Tagihan</button>
+          @endcan
           <div id="accordion">
             @foreach ($siswa->spp as $row)
               <div class="accordion">
@@ -131,8 +132,10 @@
                         </div>
                       </div>
                     @endfor
-                  </div> 
-                  <button onclick="deleteData({{ $row->id }}, {{ $siswa->id }})" data-toggle="modal" data-target="#delete-modal" class="btn btn-sm btn-danger float-right mb-3"><i class="fas fa-trash"></i></button>
+                  </div>
+                  @can('transaksi.tagihan')
+                    <button onclick="deleteData({{ $row->id }}, {{ $siswa->id }})" data-toggle="modal" data-target="#delete-modal" class="btn btn-sm btn-danger float-right mb-3"><i class="fas fa-trash"></i></button>
+                  @endcan
                 </div>
               </div>
             @endforeach
