@@ -1,4 +1,4 @@
-@extends('layout.laporan')
+@extends('layout.laporan', compact('identitas'))
 
 @section('content')
 <div style="margin-bottom: 1rem;">
@@ -12,6 +12,7 @@
     <th>Tanggal</th>
     <th>Pembayaran</th>
     <th>Siswa</th>
+    <th>Kelas</th>
     <th>Bulan Ke</th>
     <th>Dibayar</th>
     <th>Petugas</th>
@@ -22,6 +23,7 @@
       <td>{{ date('Y-m-d H:i', strtotime($row->tgl_pembayaran)) }}</td>
       <td>{{ $row->tagihan->spp->nama }}</td>
       <td>{{ $row->tagihan->siswa->nama }}</td>
+      <td>{{ $row->tagihan->siswa->kelas->nama }}</td>
       <td>{{ Helper::getMonth($row->bulan_ke) }}</td>
       <td>Rp. {{ number_format($row->jumlah) }}</td>
       <td>{{ $row->user->nama }}</td>

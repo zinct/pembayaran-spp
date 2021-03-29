@@ -80,7 +80,7 @@
             <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-bullhorn"></i> <span>Laporan</span></a>
               <ul class="dropdown-menu">
-                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan' && request()->segment(3) == 'pembayaran') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.pembayaran.index') }}">Pembayaran</a></li>
+                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan' && request()->segment(3) == 'pembayaran') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.pembayaran.index') }}">Histori Pembayaran</a></li>
               </ul>
             </li>
             @endcanany

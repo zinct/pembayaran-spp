@@ -10,28 +10,6 @@
   </style>
 </head>
 <body>
-  <img style="float: left; margin: 1.2rem;" src="" alt="Logo Toko" width="90">
-  <!-- Header -->
-  <div class="row">
-    <div class="col">
-      <h3 style="margin-top: 2rem;" class="no-space-h">{{ 'SMK BAKTI NUSANTARA 666' }}</h3>
-    </div>
-  <div class="row text-sm">
-    <div class="col">
-      {{ 'Jawa Barat' . ', ' . 'Kabupaten Bandung' . ' ' . 'Jalan Percobaan' }}
-    </div>
-  </div>
-  <div class="row text-sm">
-    <div class="col">
-      Telp. {{ '085321757616' . ' Email : ' . 'smkbn666@gmail.com' }}
-    </div>
-  </div>
-  <div class="row text-sm">
-    <div class="col">
-      Web : {{ 'repo.smkbn666.com' }}
-    </div>
-  </div>
-  <hr style="height:1px;border:none;color:#333;background-color:#333; margin-top: 1rem; margin-bottom: 0rem;">
 
   @yield('content')
 

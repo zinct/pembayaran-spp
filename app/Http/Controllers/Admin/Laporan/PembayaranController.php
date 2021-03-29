@@ -10,12 +10,13 @@ class PembayaranController extends Controller
 {
     public function index()
     {
-        $data['pembayaran'] = \App\Pembayaran::get();
+        $data['pembayaran'] = \App\Pembayaran::with('tagihan', 'tagihan.siswa', 'tagihan.siswa.kelas', 'user')->get();
         return view('admin.laporan.pembayaran.index', $data);
     }
 
     public function laporan(Request $request)
     {
+        $data['identitas'] = \App\Identitas::get();
         $pembayaran = \App\Pembayaran::with('user', 'tagihan');
         $data['pembayaran'] = $pembayaran->orderBy('tgl_pembayaran', 'DESC')->get();
 
