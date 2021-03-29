@@ -73,14 +73,16 @@
                 <a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'transaksi' && request()->segment(3) == 'pembayaran') ? 'text-primary' : '' }}" href="{{ route('admin.transaksi.pembayaran.index') }}"><i class="fas fa-money-bill"></i> <span>Pembayaran</span></a>
               </li>
             @endcan
-            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
+            @canany(['laporan.pembayaran'])
             <li class="menu-header">Info Management</li>
             @endcanany
-            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
+            @canany(['laporan.pembayaran'])
             <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-bullhorn"></i> <span>Laporan</span></a>
               <ul class="dropdown-menu">
-                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan' && request()->segment(3) == 'pembayaran') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.pembayaran.index') }}">Histori Pembayaran</a></li>
+                @can('laporan.pembayaran')
+                  <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'laporan' && request()->segment(3) == 'pembayaran') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.pembayaran.index') }}">Histori Pembayaran</a></li>
+                @endcan
               </ul>
             </li>
             @endcanany
@@ -124,11 +126,13 @@
                 <li><a class="nav-link {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'user-manager' && request()->segment(3) == 'profile') ? 'text-primary' : '' }}" href="{{ route('admin.user-manager.profile.index') }}">Profile</a></li>
               </ul>
             </li>
-            @canany(['data.siswa', 'data.kompetensi', 'data.spp', 'data.tahun'])
-            <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'data') ? 'active' : '' }}">
+            @canany(['setting.identitas'])
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'admin' && request()->segment(2) == 'setting') ? 'active' : '' }}">
               <a href="javascript:void(0)" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-wrench"></i> <span>Setting</span></a>
               <ul class="dropdown-menu">
-                <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'setting' && request()->segment(3) == 'identitas') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.setting.identitas.index') }}">Identitas</a></li>
+                @can('setting.identitas')
+                  <li class="{{ (request()->segment(1) == 'admin' && request()->segment(2) == 'setting' && request()->segment(3) == 'identitas') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.setting.identitas.index') }}">Identitas</a></li>
+                @endcan
               </ul>
             </li>
             @endcanany
