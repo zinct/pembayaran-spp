@@ -10,7 +10,7 @@ class PembayaranController extends Controller
 {
     public function index()
     {
-        $data['pembayaran'] = \App\Pembayaran::with('tagihan', 'tagihan.siswa', 'tagihan.siswa.kelas', 'user')->get();
+        $data['pembayaran'] = \App\Pembayaran::with('tagihan', 'tagihan.siswa', 'tagihan.siswa.kelas', 'user')->orderBy('tgl_pembayaran', 'DESc')->get();
         return view('admin.laporan.pembayaran.index', $data);
     }
 

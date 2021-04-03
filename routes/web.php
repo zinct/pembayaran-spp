@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::namespace('Auth')->group(function() {
 
-    Route::middleware(['guest'])->group(function() {
+    Route::middleware(['guest:admin', 'guest:siswa'])->group(function() {
         Route::get('/login', 'AuthController@index')->name('login');
         Route::post('/login', 'AuthController@login');
     });
@@ -28,7 +28,7 @@ Route::namespace('Auth')->group(function() {
 
 });
 
-Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->group(function() {
+Route::namespace('Admin')->middleware('auth:admin')->prefix('admin')->name('admin.')->group(function() {
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -99,8 +99,10 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 
     Route::namespace('Laporan')->prefix('laporan')->name('laporan.')->group(function() {
 
-        Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
-        Route::get('/pembayaran/laporan', 'PembayaranController@laporan')->name('pembayaran.laporan');
+        Route::middleware('can:laporan.pembayaran')->group(function() {
+            Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');
+            Route::get('/pembayaran/laporan', 'PembayaranController@laporan')->name('pembayaran.laporan');
+        });
 
     });
 
@@ -138,9 +140,17 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 
     Route::namespace('Setting')->prefix('setting')->name('setting.')->group(function() {
         
-        Route::get('/identitas', 'IdentitasController@index')->name('identitas.index');
-        Route::post('/identitas', 'IdentitasController@store')->name('identitas.store');
+        Route::middleware('can:setting.identitas')->group(function() {
+            Route::get('/identitas', 'IdentitasController@index')->name('identitas.index');
+            Route::post('/identitas', 'IdentitasController@store')->name('identitas.store');
+        });
         
     });
+
+});
+
+Route::namespace('Siswa')->middleware('auth:siswa')->prefix('siswa')->name('siswa.')->group(function() {
+
+    Route::get('/home', 'HomeController@index')->name('home');
 
 });

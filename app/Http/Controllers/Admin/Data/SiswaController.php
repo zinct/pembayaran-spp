@@ -32,6 +32,11 @@ class SiswaController extends BaseController
         $data['spp'] = \App\Spp::whereHas('kelas', function($query) use($siswa) {
             return $query->where('kelas_id', $siswa->kelas_id);
         })->get();
+
+        $data['pembayaran'] = \App\Pembayaran::whereHas('tagihan', function($query) use($siswa) {
+            return $query->where('siswa_id', $siswa->id);
+        })->orderBy('tgl_pembayaran', 'DESC')->get();
+
         return view('admin/data/siswa/show', $data, compact('siswa'));
     }
     
@@ -43,6 +48,7 @@ class SiswaController extends BaseController
             'nama' => 'required',
             'kelas_id' => 'required',
             'kelamin' => 'required',
+            'password' => 'required|confirmed',
             'status' => 'required',
         ]);
 
@@ -56,6 +62,7 @@ class SiswaController extends BaseController
             $model->kelamin = $request->kelamin;
             $model->telp = $request->telp;
             $model->status = $request->status;
+            $model->password = bcrypt($request->password);
             $model->alamat = $request->alamat;
             $model->save();
     
@@ -96,6 +103,7 @@ class SiswaController extends BaseController
             'nama' => 'required',
             'kelas_id' => 'required',
             'kelamin' => 'required',
+            'password' => 'confirmed',
             'status' => 'required',
         ]);
 
@@ -125,6 +133,10 @@ class SiswaController extends BaseController
                 })->save($fileLocation);
     
                 $model->avatar = $filename;
+            }
+
+            if($request->password) {
+                $model->password = bcrypt($request->password);
             }
 
             $model->save();

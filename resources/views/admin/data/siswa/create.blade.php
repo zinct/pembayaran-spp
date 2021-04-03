@@ -26,19 +26,19 @@
             <div class="row">
               <div class="col-8">
                 <div class="form-group row mb-4">
-                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NIS</label>
+                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NISN</label>
                   <div class="col-sm-12 col-md-7">
-                    <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" placeholder="ketik nis">
-                    @error('nis')
+                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" placeholder="ketik nisn">
+                    @error('nisn')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                   </div>
                 </div>
                 <div class="form-group row mb-4">
-                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NISN</label>
+                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NIS</label>
                   <div class="col-sm-12 col-md-7">
-                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" placeholder="ketik nisn">
-                    @error('nisn')
+                    <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{ old('nis') }}" placeholder="ketik nis">
+                    @error('nis')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                   </div>
@@ -46,7 +46,7 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Lengkap</label>
                   <div class="col-sm-12 col-md-7">
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" placeholder="ketik nama siswa">
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" placeholder="ketik nama siswa">
                     @error('nama')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -82,8 +82,26 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Telp</label>
                   <div class="col-sm-12 col-md-7">
-                    <input type="text" class="form-control @error('telp') is-invalid @enderror" name="telp" placeholder="ex. 085321757616">
+                    <input type="text" class="form-control @error('telp') is-invalid @enderror" name="telp" value="{{ old('telp') }}" placeholder="ex. 085321757616">
                     @error('telp')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row mb-4">
+                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
+                  <div class="col-sm-12 col-md-7">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="********">
+                    @error('password')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row mb-4">
+                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Konfirmasi Password</label>
+                  <div class="col-sm-12 col-md-7">
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="********">
+                    @error('password_confirmation')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                   </div>
@@ -104,7 +122,7 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
                   <div class="col-sm-12 col-md-7">
-                    <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" data-height="100" placeholder="Ketik Alamat"></textarea>
+                    <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" data-height="100" placeholder="Ketik Alamat">{{ old('alamat') }}</textarea>
                     @error('alamat')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

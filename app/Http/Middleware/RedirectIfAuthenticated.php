@@ -18,8 +18,14 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+        if (Auth::guard('admin')->check()) {
+
+            return redirect()->route('admin.dashboard');
+
+        } else if(Auth::guard('siswa')->check()) {
+
+            return redirect()->route('siswa.home');
+            
         }
 
         return $next($request);

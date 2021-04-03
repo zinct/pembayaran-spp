@@ -84,6 +84,10 @@
               <div class="detail-value">{{ $pembayaran }}</div>
               <div class="detail-name">Jumlah Transaksi</div>
             </div>
+            <div class="statistic-details-item">
+              <div class="detail-value">Rp. {{ number_format($pemasukan) }}</div>
+              <div class="detail-name">Pemasukan</div>
+            </div>
           </div>
         </div>
       </div>
@@ -95,19 +99,25 @@
         </div>
         <div class="card-body">
           <ul class="list-unstyled list-unstyled-border">
-            @foreach ($aktivitas as $row)
+            @forelse ($aktivitas as $row)
               <li class="media">
-                <img class="mr-3 rounded-circle" width="50" src="{{ url('assets/img/siswa/' . Helper::nullReplace($row->tagihan->siswa->avatar, 'default.png')) }}" alt="avatar">
+                <img class="mr-3" width="50" src="{{ url('assets/img/siswa/' . Helper::nullReplace($row->tagihan->siswa->avatar, 'default.png')) }}" alt="avatar">
                 <div class="media-body">
                   <div class="float-right text-primary">{{ date('Y-m-d H:i', strtotime($row->tgl_pembayaran)) }}</div>
                   <div class="media-title">{{ $row->tagihan->siswa->nama }} <br> <span class="text-muted">{{ $row->tagihan->siswa->kelas->nama }}</span></div>
                   <span class="text-small text-muted">Melakukan pembayaran pada tagihan ({{ $row->tagihan->spp->nama }}) sebesar Rp. {{ number_format($row->jumlah) }}.</span>
                 </div>
               </li>
-            @endforeach
+            @empty
+              <li class="media">
+                <div class="media-body">
+                  <div class="text-center">Tidak Ada Data</div>
+                </div>
+              </li>
+            @endforelse
           </ul>
           <div class="text-center">
-            <a href="javascript:void(0)" class="btn btn-primary mt-4" style="width: 100%">
+            <a href="{{ route('admin.laporan.pembayaran.index') }}" class="btn btn-primary mt-4" style="width: 100%">
               Lihat Semua
             </a>
           </div>

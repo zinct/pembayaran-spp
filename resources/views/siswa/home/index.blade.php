@@ -1,16 +1,4 @@
-@extends('layout/admin')
-
-@section('header')
-  <div class="section-header-back">
-    <a href="{{ route('admin.data.siswa.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
-  </div>
-  <h1>Detail Siswa</h1>
-  <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-    <div class="breadcrumb-item"><a href="{{ route('admin.data.siswa.index') }}">Siswa</a></div>
-    <div class="breadcrumb-item">Detail Siswa</div>
-  </div>
-@endsection
+@extends('layout.siswa', compact('siswa', 'identitas'))
 
 @section('css')
   <link rel="stylesheet" href="{{ url('assets/vendor/dropify/dropify.css') }}">
@@ -100,11 +88,8 @@
           </div>
         </div>
         <div class="tab-pane fade" id="tagihan" role="tabpanel" aria-labelledby="profile-tab">
-          @can('transaksi.tagihan')
-            <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tagihan-modal">Tambah Tagihan</button>
-          @endcan
           <div id="accordion">
-            @foreach ($siswa->spp as $row)
+            @forelse ($siswa->spp as $row)
               <div class="accordion">
                 <div class="accordion-header collapsed" role="button" data-toggle="collapse" data-target="#panel-body-{{ $row->id }}">
                   <div class="d-flex justify-content-between">
@@ -133,12 +118,11 @@
                       </div>
                     @endfor
                   </div>
-                  @can('transaksi.tagihan')
-                    <button onclick="deleteData({{ $row->id }}, {{ $siswa->id }})" data-toggle="modal" data-target="#delete-modal" class="btn btn-sm btn-danger float-right mb-3"><i class="fas fa-trash"></i></button>
-                  @endcan
                 </div>
               </div>
-            @endforeach
+            @empty
+              <div class="alert alert-success">Tidak Ada Tagihan.</div>
+            @endforelse
           </div>
         </div>
         <div class="tab-pane fade" id="riwayat" role="tabpanel" aria-labelledby="contact-tab">
@@ -178,61 +162,6 @@
   </div>
 @endsection
 
-@section('modal')
-  <form action="{{ route('admin.transaksi.tagihan.store', $siswa->id) }}" method="POST">
-    @csrf
-    <div class="modal fade" id="tagihan-modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Tambah Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                @foreach ($spp as $row)
-                  <div class="custom-control custom-checkbox py-1">
-                    <input type="checkbox" class="custom-control-input" name="spp_id[]" id="{{ $row->id }}" value="{{ $row->id }}" {{ ($siswa->spp->contains($row->id)) ? 'checked disabled' : '' }}>
-                    <label class="custom-control-label d-flex justify-content-between" for="{{ $row->id }}">
-                      <span><b>{{ $row->nama }}</b> ({{ $row->tipe }})</span>
-                      <span class="text-right"><span>{{ number_format($row->nominal) }}</span>
-                    </label>
-                  </div>
-                @endforeach
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
-          </div>
-      </div>
-    </div>
-  </form>
-
-  <form action="" method="POST" id="delete-form">
-    @csrf
-    @method('DELETE')
-    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Yakin Ingin Dihapus?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body text-danger">Data Yang Sudah Dihapus Tidak Bisa Dikembalikan Lagi!</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-            <button class="btn btn-danger" type="submit">Hapus</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-@endsection
-
 @section('script')
   @include('vendor.izitoast.toast')
   @include('vendor.izitoast.error')
@@ -240,9 +169,5 @@
   <script src="{{ url('assets/vendor/dropify/dropify.js') }}"></script>
   <script>
     $('.dropify').dropify();
-
-    function deleteData(id, siswa_id) {
-      $('#delete-form').attr('action', `{{ url('admin/transaksi/tagihan/${id}/${siswa_id}') }}`);
-    }
   </script>
 @endsection

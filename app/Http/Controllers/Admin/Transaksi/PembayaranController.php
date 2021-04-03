@@ -20,6 +20,9 @@ class PembayaranController extends Controller
         if($data['siswa'] == null)
             return back()->with('error', 'Maaf siswa tidak ditemukan');
 
+        if($data['siswa']->status == 'Tidak Aktif')
+            return back()->with('error', 'Maaf siswa tidak aktif');
+
         return view('admin.transaksi.pembayaran.create', $data);
     }
 

@@ -42,9 +42,11 @@
               <a href="{{ route('admin.user-manager.profile.index') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="javascript:void(0)" class="dropdown-item has-icon">
+              @can('setting.identitas')
+              <a href="{{ route('admin.setting.identitas.index') }}" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
+              @endcan
               <div class="dropdown-divider"></div>
               <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout

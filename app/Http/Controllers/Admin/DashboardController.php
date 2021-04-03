@@ -13,6 +13,7 @@ class DashboardController extends BaseController
         $data['siswa_non'] = \App\Siswa::where('status', 'Tidak Aktif')->count();
         $data['tagihan'] = \App\TagihanView::count();
         $data['pembayaran'] = \App\Pembayaran::count();
+        $data['pemasukan'] = \App\Pembayaran::sum('jumlah');
         $data['lunas'] = \App\TagihanView::where('status', 'Lunas')->count();
         $data['belum_lunas'] = \App\TagihanView::where('status', 'Belum Lunas')->count();
         $data['laki_laki'] = \App\Siswa::where(['status' => 'Aktif', 'kelamin' => 'L'])->count();
