@@ -20,6 +20,6 @@ class Tagihan extends Model
 
     public function view()
     {
-        return $this->belongsTo('App\TagihanView');
+        return $this->belongsTo('App\TagihanView', 'id', 'id');
     }
 }

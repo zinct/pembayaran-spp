@@ -104,6 +104,11 @@ Route::namespace('Admin')->middleware('auth:admin')->prefix('admin')->name('admi
             Route::get('/pembayaran/laporan', 'PembayaranController@laporan')->name('pembayaran.laporan');
         });
 
+        Route::middleware('can:laporan.tagihan')->group(function() {
+            Route::get('/tagihan', 'TagihanController@index')->name('tagihan.index');
+            Route::get('/tagihan/laporan', 'TagihanController@laporan')->name('tagihan.laporan');
+        });
+
     });
 
     Route::namespace('UserManager')->prefix('user-manager')->name('user-manager.')->group(function() {

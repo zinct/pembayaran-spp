@@ -3,7 +3,6 @@
 @section('content')
 <div style="margin-bottom: 1rem;">
   <h3 class="center no-space-h">Laporan Pembayaran</h3>
-  <p class="text-center text-sm periode">Periode </p>
 </div>
 
 <table class="text-sm" border="1" cellspacing="0" width="100%" cellpadding="3">
