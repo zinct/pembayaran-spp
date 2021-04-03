@@ -1,0 +1,4 @@
+/img/siswa/*
+/img/avatars/*
+!/img/siswa/default.png
+!/img/avatars/default.png
