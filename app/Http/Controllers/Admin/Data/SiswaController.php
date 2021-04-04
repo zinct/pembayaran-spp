@@ -149,7 +149,12 @@ class SiswaController extends BaseController
     public function destroy($id)
     {
         try {
-            \App\Siswa::destroy($id);
+            $model = \App\Siswa::find($id);
+
+            $model->delete();
+            
+            if($model->avatar != null)
+                Storage::disk('public')->delete('assets/img/siswa/' . $model->avatar);
             return back()->with('success', 'Data Berhasil Dihapus');
         } catch (\Exception $e) {
             if($e->getCode() == 23000)
