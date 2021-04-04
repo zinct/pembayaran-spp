@@ -25,6 +25,7 @@ class PermissionSeeder extends Seeder
             ['nama' => 'data.spp'],
             ['nama' => 'data.tahun'],
             ['nama' => 'laporan.pembayaran'],
+            ['nama' => 'laporan.tagihan'],
             ['nama' => 'user-manager.user'],
             ['nama' => 'user-manager.role'],
             ['nama' => 'user-manager.permission'],
